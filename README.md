@@ -1,6 +1,6 @@
 # Documentación Preliminar del Proyecto - Sitio Web de Adopción de Mascotas "Huellas de Esperanza"
 
-![Adopción de Mascotas](../img/perrito.gato.inicio2.jpg)
+![Adopción de Mascotas](app/static/img/perrito.gato.inicio2.jpg)
 
 ## 1. Título y Descripción del Proyecto:
 - **Título:** 🐾 Huellas de Esperanza – Adopción de mascotas
