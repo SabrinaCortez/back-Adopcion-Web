@@ -1,0 +1,40 @@
+{% include 'defaults/head.html'%}
+<body class="registrarse">
+
+    <!--MENU ENCABEZADO-->
+{% include 'defaults/header.html' %}     
+
+<section>
+  <div class="login-box">
+    <form action="">
+      <h2>Registrarte</h2>
+      <div class="input-box">
+        <span class="icon"><ion-icon name="person"></ion-icon></span>
+        <input type="user" required />
+        <label>Usuario</label>
+      </div>
+      <div class="input-box">
+        <span class="icon"><ion-icon name="unlock"></ion-icon></span>
+        <input type="password" required />
+        <label>Contraseña</label>
+      </div>
+      <div class="input-box">
+        <span class="icon"><ion-icon name="Email"></ion-icon></span>
+        <input type="password" required />
+        <label>Email</label>
+      </div>
+      <button type="submit">Aceptar</button>
+    </form>
+  </div>
+
+
+</section>
+        <!-- Pie de pagina(footer) -->
+        {% include 'defaults/footer.html'%}
+        <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous">
+      </script>
+    </body>
+</html>
