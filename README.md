@@ -27,7 +27,7 @@
 - **Funcionalidades:** Formulario de adopción y fotos de animales disponibles, opción de donación y contacto.
 
 ## 6. Integrantes del Equipo:
-- **Equipo:** Jesica Gomez, Nicolas Naggi, Sabrina Cortez.
+- **Equipo:** Jesica Gomez,Adrian Recio, Nicolas Naggi, Sabrina Cortez.
 
 ## 7. Cronograma Tentativo:
 - **Diseño y planificación:** 2 semanas
