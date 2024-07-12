@@ -17,6 +17,11 @@ def dataContacto():
     title="Contacto"
     return render_template("contacto.html",title=title)
 
+@app.route('/login')
+def dataLogin():
+    title="Login"
+    return render_template("login.html",title=title)
+
 @app.route('/perros')
 def dataPerros():
     title="Perros"
