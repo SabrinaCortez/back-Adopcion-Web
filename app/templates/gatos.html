@@ -1,37 +1,8 @@
 {% include 'defaults/head.html'%}
 <body>
 <!--MENU ENCABEZADO-->
-<header>
-  <nav class="navbar navbar-expand-lg">
-    <div class="container">
-        <a class="navbar-brand" href="../index.html">
-            <img class="logo" src="../static/Huellas de esperanza (1).png" width="50" alt="Logo de la página web"/>
-        </a>
+{% include 'defaults/header.html' %}     
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="nosotros.html">Sobre Nosotros</a>
-                </li>
-                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="servicios.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">Adoptar</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item navbar-item-drop" href="perros.html">Perros</a></li>
-                        <li><a class="dropdown-item navbar-item-drop" href="gatos.html">Gatos</a></li>
-                        <li><a class="dropdown-item navbar-item-drop" href="transito.html">Transito</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="donar.html">Donar</a></li>
-                <li class="nav-item"><a class="nav-link" href="contacto.html">Contáctanos</a></li>
-                
-            </ul>
-        </div>
-    </div>
-</nav>
-</header>
 
 <h1>Gatos</h1>
 
@@ -41,7 +12,7 @@
     <div class="container">
        
         <div class="article" >
-            <img src="../fotos/gatos/bigotes.jpg" alt="bigotes">
+            <img src="../static/fotos/gatos/bigotes.jpg" alt="bigotes">
             <h2 class="mascota">Bigotes</h2>
            <p>
             raza: mestizo <br>
@@ -49,10 +20,10 @@
             condicion especial: diabetes <br>
             sexo:macho <br>
            </p>
-           <a href="../templates/formAdopcion.html">Formulario de adopción</a>
+           <a href="/formAdopcion">Formulario de adopción</a>
         </div>
         <div class="article">
-            <img src="../fotos/gatos/pelusa.jpg" alt="pelusa">
+            <img src="../static/fotos/gatos/pelusa.jpg" alt="pelusa">
             <h2>Pelusa</h2>
             <p>
                 raza: mestizo <br>
@@ -60,10 +31,10 @@
                 condicion especial: ninguna <br>
                 sexo:hembra <br>
                </p>
-               <a href="../templates/formAdopcion.html">Formulario de adopción</a>
+               <a href="/formAdopsion">Formulario de adopción</a>
         </div>
         <div class="article">
-            <img src="../fotos/gatos/nube.jpg" alt="nube">
+            <img src="../static/fotos/gatos/nube.jpg" alt="nube">
             <h2>Nube</h2>
             <p>
             raza: mestizo <br>
@@ -71,20 +42,20 @@
             condicion especial: ninguna <br>
             sexo:hembra<br>
            </p>
-           <a href="../templates/formAdopcion.html">Formulario de adopción</a>
+           <a href="/formAdopsion">Formulario de adopción</a>
         </div>
         <div class="article">
-            <img src="../fotos/gatos/rayito.jpeg" alt="rayito">
+            <img src="../static/fotos/gatos/rayito.jpeg" alt="rayito">
             <h2>Rayito</h2>
           <p>  raza: mestizo <br>
             edad: 1 año <br>
             condicion especial: ninguna <br>
             sexo:macho <br>
            </p>
-           <a href="../templates/formAdopcion.html">Formulario de adopción</a>
+           <a href="/formAdopsion">Formulario de adopción</a>
         </div>
         <div class="article">
-            <img src="../fotos/gatos/fidel.jpg" alt="fidel">
+            <img src="../static/fotos/gatos/fidel.jpg" alt="fidel">
             <h2>Fidel</h2>
             <p>
             raza: mestizo <br>
@@ -92,17 +63,17 @@
                 condicion especial: ninguna <br>
                 sexo:macho <br>
                </p>
-               <a href="../templates/formAdopcion.html">Formulario de adopción</a>
+               <a href="/formAdopsion">Formulario de adopción</a>
         </div>
         <div class="article">
-            <img src="../fotos/gatos/cleo.jpg" alt="cleo">
+            <img src="../static/fotos/gatos/cleo.jpg" alt="cleo">
             <h2>Cleo</h2>
            <p>raza: siames <br>
             edad: 3 año <br>
             condicion especial: ninguna <br>
             sexo:hembra <br>
            </p>
-           <a href="../templates/formAdopcion.html">Formulario de adopción</a>
+           <a href="/formAdopsion">Formulario de adopción</a>
         </div>
     </div>
 
@@ -112,13 +83,13 @@
   <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="../static/gato.perro.2.jpg" class="d-flex w-100" alt="Imagen Mascotas unidas">
+        <img src="../static/img/gato.perro.2.jpg" class="d-flex w-100" alt="Imagen Mascotas unidas">
       </div>
       <div class="carousel-item">
-        <img src="../static/gatito.triste1.jpg" class="d-block w-100" alt="gatitos en adopción">
+        <img src="../static/img/gatito.triste1.jpg" class="d-block w-100" alt="gatitos en adopción">
       </div>
       <div class="carousel-item">
-        <img src="../fotos/gatos/copito.jpg" class="d-block w-100" alt="perrito en adopción">
+        <img src="../static/fotos/gatos/copito.jpg" class="d-block w-100" alt="perrito en adopción">
       </div>
       
     </div>

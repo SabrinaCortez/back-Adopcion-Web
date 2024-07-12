@@ -2,42 +2,12 @@
 <body>
 
     <!--MENU ENCABEZADO-->
-<header>
-  <nav class="navbar navbar-expand-lg">
-    <div class="container">
-        <a class="navbar-brand" href="../index.html">
-            <img class="logo" src="../static/Huellas de esperanza (1).png" width="50" alt="Logo de la página web"/>
-        </a>
+{% include 'defaults/header.html' %}     
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="nosotros.html">Sobre Nosotros</a>
-                </li>
-                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="servicios.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">Adoptar</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item navbar-item-drop" href="perros.html">Perros</a></li>
-                        <li><a class="dropdown-item navbar-item-drop" href="gatos.html">Gatos</a></li>
-                        <li><a class="dropdown-item navbar-item-drop"  href="transito.html">Transito</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="donar.html">Donar</a></li>
-                <li class="nav-item"><a class="nav-link" href="contacto.html">Contáctanos</a></li>
-                
-            </ul>
-        </div>
-    </div>
-</nav>
-
-</header>
 <section>
   
   <div class="contenido-nosotros">
-    <img src="../static/mascotasp.jpg" alt="Foto perro-gato juntos">
+    <img src="../static/img/mascotasp.jpg" alt="Foto perro-gato juntos">
 </div>
 
 <div class="nosotros">
@@ -63,13 +33,13 @@
   <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="../static/mascotas1.jpg" class="d-flex w-100" alt="Imagen Mascotas unidas">
+        <img src="../static/img/mascotas1.jpg" class="d-flex w-100" alt="Imagen Mascotas unidas">
       </div>
       <div class="carousel-item">
-        <img src="../static/gatitos.jpg" class="d-block w-100" alt="gatitos en adopción">
+        <img src="../static/img/gatitos.jpg" class="d-block w-100" alt="gatitos en adopción">
       </div>
       <div class="carousel-item">
-        <img src="../static/perrito1.png" class="d-block w-100" alt="perrito en adopción">
+        <img src="../static/img/perrito1.png" class="d-block w-100" alt="perrito en adopción">
       </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">

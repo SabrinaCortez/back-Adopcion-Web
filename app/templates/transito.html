@@ -1,156 +1,73 @@
 {% include 'defaults/head.html'%}
 <body>
   <!--MENU ENCABEZADO-->
-<header>
-  <nav class="navbar navbar-expand-lg">
-    <div class="container">
-        <a class="navbar-brand" href="../index.html">
-            <img class="logo" src="../static/Huellas de esperanza (1).png" width="50" alt="Logo de la página web"/>
-        </a>
+  {% include 'defaults/header.html' %}     
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="nosotros.html">Sobre Nosotros</a>
-                </li>
-                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="servicios.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">Adoptar</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item navbar-item-drop" href="./perros.html">Perros</a></li>
-                        <li><a class="dropdown-item navbar-item-drop" href="./gatos.html">Gatos</a></li>
-                        <li><a class="dropdown-item navbar-item-drop"  href="./transito.html">Transito</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="donar.html">Donar</a></li>
-                <li class="nav-item"><a class="nav-link" href="contacto.html">Contáctanos</a></li>
-                
-            </ul>
-        </div>
-    </div>
-</nav>
-
-</header>
     <h1>Transito</h1>
 
 
     <main>
         <section>
         <h3>Perros</h3>
-
-
-        <div id="carouselExampleAuto" class="carousel slide" >
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <div class="article-item">
-                    <img src="../fotos/perros/polo.jpg" alt="polo">
-                    <h2>Polo</h2>
-                   <p>raza: pug <br>
-                    edad: 3 años <br>
-                    condicion especial: dificultad respiratoria <br>
-                    sexo:macho <br>
-                   </p>
-                   <a href="../templates/formAdopcion.html">Formulario de adopción</a>
-                </div>
+        <div id="carouselExampleAuto" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+              {% for perro in perros %}
+              <div class="carousel-item {% if loop.first %}active{% endif %}">
+                  <div class="article-item">
+                      <img src="{{ '../static/fotos/'+perro[6]}}" alt="{{ perro[0] }}" >
+                      
+                      <h2>{{ perro[0]  }}</h2>
+                      <p>raza: {{ perro[2] }} <br>
+                          edad: {{ perro[3] }} <br>
+                          condición especial: {{ perro[4]}} <br>
+                          sexo: {{ perro[5] }} <br>
+                      </p>
+                      <a href="/formAdopsion">Formulario de adopción</a>
+                  </div>
               </div>
-              <div class="carousel-item">
-                <div class="article-item">
-                    <img src="../fotos/perros/thor.jpg" alt="thor">
-                    <h2>Thor</h2>
-                    <p>
-                    raza: salchicha <br>
-                        edad: 3 meses<br>
-                        condicion especial: ninguna <br>
-                        sexo:macho <br>
-                       </p>
-                       <a href="../templates/formAdopcion.html">Formulario de adopción</a>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <div class="article-item">
-                    <img src="../fotos/perros/loki.jpg" alt="loki">
-                    <h2>Loki</h2>
-                  <p>  raza: mestizo <br>
-                    edad: 2 años <br>
-                    condicion especial: ninguna <br>
-                    sexo:macho <br>
-                   </p>
-                   <a href="../templates/formAdopcion.html">Formulario de adopción</a>
-                </div>
-              </div>
-             
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAuto" data-bs-slide="prev">
+              {% endfor %}
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAuto" data-bs-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
               <span class="visually-hidden">Anterior</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAuto" data-bs-slide="next">
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAuto" data-bs-slide="next">
               <span class="carousel-control-next-icon" aria-hidden="true"></span>
               <span class="visually-hidden">Próximo</span>
-            </button>
-          </div>
-        
+          </button>
+      </div>
         </section>
-<section>
-           
+
+        <section>
             <h3>Gatos</h3>    
 
-            <div id="carouselExample" class="carousel slide">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="article-item">
-                            <img src="../fotos/gatos/copito.jpg" alt="copito">
-                            <h2>Copito</h2>
-                          <p>  raza: mestizo <br>
-                            edad: 1 año <br>
-                            condicion especial: ninguna <br>
-                            sexo:macho <br>
-                           </p>
-                           <a href="../templates/formAdopcion.html">Formulario de adopción</a>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="article-item">
-                            <img src="../fotos/gatos/robin.jpg" alt="robin">
-                            <h2>Robin</h2>
-                           <p>raza: mestizo <br>
-                            edad: 3 años <br>
-                            condicion especial: ninguna <br>
-                            sexo:macho <br>
-                           </p>
-                           <a href="../templates/formAdopcion.html">Formulario de adopción</a>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="article-item">
-                            <img src="../fotos/gatos/milan.jpg" alt="milan">
-                            <h2>Milan</h2>
-                            <p>
-                            raza: mestizo <br>
-                                edad: 2 meses <br>
-                                condicion especial: ninguna <br>
-                                sexo:hembra <br>
-                               </p>
-                               <a href="../templates/formAdopcion.html">Formulario de adopción</a>
-                        </div>
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Anterior</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Siguiente</span>
-                </button>
-            </div>
-
-
-          
-            
-
+            <div id="carouselGato" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                  {% for gato in gatos %}
+                  <div class="carousel-item {% if loop.first %}active{% endif %}">
+                      <div class="article-item">
+                          <img src="{{ '../static/fotos/'+gato[6]}}" alt="{{ gato[0] }}" >
+                          
+                          <h2>{{ gato[0]  }}</h2>
+                          <p>raza: {{ gato[2] }} <br>
+                              edad: {{ gato[3] }} <br>
+                              condición especial: {{ gato[4]}} <br>
+                              sexo: {{ gato[5] }} <br>
+                          </p>
+                          <a href="/formAdopcion">Formulario de adopción</a>
+                      </div>
+                  </div>
+                  {% endfor %}
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselGato" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Anterior</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselGato" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Próximo</span>
+              </button>
+          </div>
         </section>
        
     </main>
@@ -161,13 +78,13 @@
   <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="../fotos/gatos/rayito.jpeg" class="d-flex w-100" alt="Imagen Mascotas unidas">
+        <img src="../static/fotos/gatos/rayito.jpeg" class="d-flex w-100" alt="Imagen Mascotas unidas">
       </div>
       <div class="carousel-item">
-        <img src="../fotos/perros/polo.jpg" class="d-block w-100" alt="gatitos en adopción">
+        <img src="../static/fotos/perros/polo.jpg" class="d-block w-100" alt="gatitos en adopción">
       </div>
       <div class="carousel-item">
-        <img src="../fotos/perros/thor.jpg" class="d-block w-100" alt="perrito en adopción">
+        <img src="../static/fotos/perros/thor.jpg" class="d-block w-100" alt="perrito en adopción">
       </div>
      
     </div>

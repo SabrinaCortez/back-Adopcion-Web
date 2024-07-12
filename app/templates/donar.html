@@ -1,37 +1,8 @@
 {% include 'defaults/head.html'%}
 
 <body>
-<header>
-    <nav class="navbar navbar-expand-lg mx-auto">
-        <div class="container">
-            <a class="navbar-brand" href="../index.html">
-                <img class="logo" src="../static/Huellas de esperanza (1).png" width="50" alt="Logo de la página web"/>
-            </a>
+    {% include 'defaults/header.html' %}     
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse mx-auto row justify-content-center" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="nosotros.html">Sobre Nosotros</a>
-                    </li>
-                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="servicios.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">Adoptar</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item navbar-item-drop" href="perros.html">Perros</a></li>
-                            <li><a class="dropdown-item navbar-item-drop" href="gatos.html">Gatos</a></li>
-                            <li><a class="dropdown-item navbar-item-drop"  href="transito.html">Transito</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="#">Donar</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contacto.html">Contáctanos</a></li>
-                    
-                </ul>
-            </div>
-        </div>
-    </nav>
-</header>
     <div class="donar">
             <h1 class="animate__animated animate__heartBeat">Gracias por querer donar!</h1>
             <p class="animate__animated animate__slideInRight">Tu contribución es muy valiosa para nosotros</p>
@@ -44,21 +15,21 @@
                 <div class="card">
                     <div class="textos">
                         <h3>Mercado Pago</h3>
-                        <img src="../static/MERCADOPAGO-LOGO.png" alt="">
+                        <img src="../static/img/MERCADOPAGO-LOGO.png" alt="">
                         <p>Alias: "huellasdeesperanza"</p>
                     </div>
                 </div>
                 <div class="card">
                     <div class="textos">
                         <h3>Transferencia Bancaria</h3>
-                        <img src="../static/TransferenciaBancaria.png" alt="">
+                        <img src="../static/img/TransferenciaBancaria.png" alt="">
                         <p>(Banco XYZ - Cuenta 123456789)</p>
                     </div>
                 </div>
                 <div class="card">
                     <div class="textos">
                         <h3>PayPal</h3>
-                        <img src="../static/Paypal_2014_logo.png" alt="">
+                        <img src="../static/img/Paypal_2014_logo.png" alt="">
                         <p>(huellasdeesperanza@paypal.com)</p>
                     </div>
                 </div>

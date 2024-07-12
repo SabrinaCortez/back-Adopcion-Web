@@ -1,0 +1,162 @@
+{% include 'defaults/head.html'%}
+<body>
+  <!--MENU ENCABEZADO-->
+  {% include 'defaults/header.html' %}     
+
+    <h1>Transito</h1>
+
+
+    <main>
+        <section>
+        <h3>Perros</h3>
+
+
+        <div id="carouselExampleAuto" class="carousel slide" >
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="article-item">
+                    <img src="../static/fotos/perros/polo.jpg" alt="polo">
+                    <h2>Polo</h2>
+                   <p>raza: pug <br>
+                    edad: 3 años <br>
+                    condicion especial: dificultad respiratoria <br>
+                    sexo:macho <br>
+                   </p>
+                   <a href="/formAdopsion">Formulario de adopción</a>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="article-item">
+                    <img src="../static/fotos/perros/thor.jpg" alt="thor">
+                    <h2>Thor</h2>
+                    <p>
+                    raza: salchicha <br>
+                        edad: 3 meses<br>
+                        condicion especial: ninguna <br>
+                        sexo:macho <br>
+                       </p>
+                       <a href="/formAdopsion">Formulario de adopción</a>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="article-item">
+                    <img src="../static/fotos/perros/loki.jpg" alt="loki">
+                    <h2>Loki</h2>
+                  <p>  raza: mestizo <br>
+                    edad: 2 años <br>
+                    condicion especial: ninguna <br>
+                    sexo:macho <br>
+                   </p>
+                   <a href="/formAdopsion">Formulario de adopción</a>
+                </div>
+              </div>
+             
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAuto" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAuto" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Próximo</span>
+            </button>
+          </div>
+        
+        </section>
+<section>
+           
+            <h3>Gatos</h3>    
+
+            <div id="carouselExample" class="carousel slide">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="article-item">
+                            <img src="../static/fotos/gatos/copito.jpg" alt="copito">
+                            <h2>Copito</h2>
+                          <p>  raza: mestizo <br>
+                            edad: 1 año <br>
+                            condicion especial: ninguna <br>
+                            sexo:macho <br>
+                           </p>
+                           <a href="/formAdopsion">Formulario de adopción</a>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="article-item">
+                            <img src="../static/fotos/gatos/robin.jpg" alt="robin">
+                            <h2>Robin</h2>
+                           <p>raza: mestizo <br>
+                            edad: 3 años <br>
+                            condicion especial: ninguna <br>
+                            sexo:macho <br>
+                           </p>
+                           <a href="/formAdopsion">Formulario de adopción</a>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="article-item">
+                            <img src="../static/fotos/gatos/milan.jpg" alt="milan">
+                            <h2>Milan</h2>
+                            <p>
+                            raza: mestizo <br>
+                                edad: 2 meses <br>
+                                condicion especial: ninguna <br>
+                                sexo:hembra <br>
+                               </p>
+                               <a href="/formAdopsion">Formulario de adopción</a>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Siguiente</span>
+                </button>
+            </div>
+
+
+          
+            
+
+        </section>
+       
+    </main>
+
+
+
+     <!-- Carrusel-->
+  <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="../static/fotos/gatos/rayito.jpeg" class="d-flex w-100" alt="Imagen Mascotas unidas">
+      </div>
+      <div class="carousel-item">
+        <img src="../static/fotos/perros/polo.jpg" class="d-block w-100" alt="gatitos en adopción">
+      </div>
+      <div class="carousel-item">
+        <img src="../static/fotos/perros/thor.jpg" class="d-block w-100" alt="perrito en adopción">
+      </div>
+     
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Próximo</span>
+    </button>
+  </div>
+     <!-- Pie de pagina(footer) -->
+     {% include 'defaults/footer.html'%}
+      <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous">
+    </script>
+    
+</body>
+</html>

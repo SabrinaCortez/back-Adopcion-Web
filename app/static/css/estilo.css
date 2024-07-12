@@ -65,7 +65,7 @@ header {
 .inicio {
   width: 100vw;
   height: 100vh;
-  background-image: url("../static/perrito.gato.inicio2.jpg");
+  background-image: url("../img/perrito.gato.inicio2.jpg");
   background-position: center;
   background-size: cover; /* Hace la imagen responsive */
   display: flex;
@@ -137,7 +137,7 @@ h3 {
 }
 .banner {
   padding: 40px 20px; /* Ajustamos el padding para evitar que el texto tape la imagen */
-  background: linear-gradient(to top, rgba(46, 54, 59, 0.8), rgba(30, 35, 38, 1)), url(../static/perro.gato.inicio.jpg);
+  background: linear-gradient(to top, rgba(46, 54, 59, 0.8), rgba(30, 35, 38, 1)), url(../img/perro.gato.inicio.jpg);
   border-radius: 10px;
   background-size: cover;
   background-position: center center;
