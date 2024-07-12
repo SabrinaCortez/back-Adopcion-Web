@@ -9,74 +9,22 @@
 
 <main>
 
-    <div class="container">
-       
-        <div class="article" >
-            <img src="../static/fotos/gatos/bigotes.jpg" alt="bigotes">
-            <h2 class="mascota">Bigotes</h2>
-           <p>
-            raza: mestizo <br>
-            edad: 2 años <br>
-            condicion especial: diabetes <br>
-            sexo:macho <br>
-           </p>
-           <a href="/formAdopcion">Formulario de adopción</a>
-        </div>
-        <div class="article">
-            <img src="../static/fotos/gatos/pelusa.jpg" alt="pelusa">
-            <h2>Pelusa</h2>
-            <p>
-                raza: mestizo <br>
-                edad: 1 año <br>
-                condicion especial: ninguna <br>
-                sexo:hembra <br>
-               </p>
-               <a href="/formAdopsion">Formulario de adopción</a>
-        </div>
-        <div class="article">
-            <img src="../static/fotos/gatos/nube.jpg" alt="nube">
-            <h2>Nube</h2>
-            <p>
-            raza: mestizo <br>
-            edad: 2 meses <br>
-            condicion especial: ninguna <br>
-            sexo:hembra<br>
-           </p>
-           <a href="/formAdopsion">Formulario de adopción</a>
-        </div>
-        <div class="article">
-            <img src="../static/fotos/gatos/rayito.jpeg" alt="rayito">
-            <h2>Rayito</h2>
-          <p>  raza: mestizo <br>
-            edad: 1 año <br>
-            condicion especial: ninguna <br>
-            sexo:macho <br>
-           </p>
-           <a href="/formAdopsion">Formulario de adopción</a>
-        </div>
-        <div class="article">
-            <img src="../static/fotos/gatos/fidel.jpg" alt="fidel">
-            <h2>Fidel</h2>
-            <p>
-            raza: mestizo <br>
-                edad: 2 meses <br>
-                condicion especial: ninguna <br>
-                sexo:macho <br>
-               </p>
-               <a href="/formAdopsion">Formulario de adopción</a>
-        </div>
-        <div class="article">
-            <img src="../static/fotos/gatos/cleo.jpg" alt="cleo">
-            <h2>Cleo</h2>
-           <p>raza: siames <br>
-            edad: 3 año <br>
-            condicion especial: ninguna <br>
-            sexo:hembra <br>
-           </p>
-           <a href="/formAdopsion">Formulario de adopción</a>
-        </div>
-    </div>
-
+  <div class="container">
+    {% for gato in gatos %}
+      <div class="article" >
+        <img src="{{ '../static/fotos/'+gato[6]}}" alt="{{ gato[0] }}" >
+        <h2 class="mascota" >{{ gato[0]  }}</h2>
+        <p>
+        <p>raza: {{ gato[2] }} <br>
+          edad: {{ gato[3] }} <br>
+          condición especial: {{ gato[4]}} <br>
+          sexo: {{ gato[5] }} <br>
+        </p>
+        </p>
+        <a href="/formAdopsion">Formulario de adopción</a>
+      </div>
+    {% endfor %}
+  </div>
 </main>
 
     <!-- Carrusel-->

@@ -1,0 +1,62 @@
+{% include 'defaults/head.html'%}
+<style>
+    .col-cDNI { width: 8%; }
+    .col-cNombreyApellido { width: 20%; }
+    .col-cDescripcion { width: 15%; }
+    .col-cCorreo { width: 10%; }
+    
+    .col-cMascota { width: 20%; }
+    .col-dDesde { width: 10%; }
+    .col-Confirmar { width: 10%; }
+    .col-Anular { width: 10%; }
+  </style>
+<body>
+
+    <!--MENU ENCABEZADO-->
+{% include 'defaults/header.html' %}     
+
+<section>
+    <h2> Listado de adoptantes</h2>
+    <div class="container">
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th class="col-cDNI">Documento</th>
+                <th class="col-cNombreyApellido">Nombre</th>
+                <th class="col-cCorreo">Correo</th>
+                <th class="col-cDescripcion">Tramite</th>
+                <th class="col-cMascota">Mascota</th>
+                <th class="col-dDesde">Desde</th>
+                <th class="col-Confirmar">Confirmar</th>
+                <th class="col-Anular">Anular</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for persona in adoptantes%}
+                <tr>
+                    <td>{{persona[0]}}</td>
+                    <td>{{persona[1]}}</td>
+                    <td>{{persona[2]}}</td>
+                    <td>{{persona[4]}}</td>
+                    <td>{{persona[6]}}</td>
+                    <td>{{persona[7]}}</td>
+                    <td>
+                        <a href="adoptante_Confirmar/{{persona[0]}}/{{persona[5]}}" class="btn btn-white"><i class="bi bi-pencil-fill"></i></a>
+                    </td>
+                    <td>
+                        <a href="/adoptante_Anular/{{persona[0]}}//{{persona[5]}}" class="btn btn-white"><i class="bi bi-trash-fill"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>           
+    </div>
+        <!-- Pie de pagina(footer) -->
+       
+        <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous">
+      </script>
+</body>       
+</html>

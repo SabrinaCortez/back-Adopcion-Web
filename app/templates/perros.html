@@ -6,55 +6,23 @@
     <h1>Perros</h1>
     <main>
 
-        <div class="container">
-           
-            <div class="article" >
-                <img src="../static/fotos/perros/balto.jpeg" alt="balto">
-                <h2 class="mascota">Balto</h2>
-               <p>
-                raza: mestizo <br>
-                edad: 2 años <br>
-                condicion especial: ninguno <br>
-                sexo:macho <br>
-               </p>
-               <a href="/formAdopcion">Formulario de adopción</a>
-            </div>
-            <div class="article">
-                <img src="../static/fotos/perros/chuletas.jpeg" alt="chuletas">
-                <h2>Chuletas</h2>
-                <p>
-                    raza: bulldog frances <br>
-                    edad: 1 año <br>
-                    condicion especial: ninguna <br>
-                    sexo:hembra <br>
-                   </p>
-                   <a href="/formAdopsion">Formulario de adopción</a>
-            </div>
-            <div class="article">
-                <img src="../static/fotos/perros/firulais.jpg" alt="firulais">
-                <h2>Firulais</h2>
-                <p>
-                raza: mestizo <br>
-                edad: 2 años <br>
-                condicion especial: ninguna <br>
-                sexo:macho <br>
-               </p>
-               <a href="/formAdopsion">Formulario de adopción</a>
-            </div>
-            <div class="article">
-                <img src="../static/fotos/perros/reino.jpg" alt="reino">
-                <h2>Reino</h2>
-              <p>  raza: chihuahua<br>
-                edad: 1 año <br>
-                condicion especial: ninguna <br>
-                 sexo:macho <br>
+      <div class="container">
+        {% for perro in perros %}
+          <div class="article" >
+            <img src="{{ '../static/fotos/'+perro[6]}}" alt="{{ perro[0] }}" >
+            <h2 class="mascota" >{{ perro[0]  }}</h2>
+            <p>
+            <p>raza: {{ perro[2] }} <br>
+              edad: {{ perro[3] }} <br>
+              condición especial: {{ perro[4]}} <br>
+              sexo: {{ perro[5] }} <br>
+            </p>
+            </p>
+            <a href="/formAdopsion">Formulario de adopción</a>
+          </div>
+        {% endfor %}
+      </div>
 
-               </p>
-               <a href="/formAdopsion">Formulario de adopción</a>
-            </div>
-         
-        </div>
-    
     </main>
 
   <!-- Carrusel-->

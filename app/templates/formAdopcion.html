@@ -3,153 +3,74 @@
 <!--MENU ENCABEZADO-->
 {% include 'defaults/header.html' %}     
 
-
 <h1>Formulario de Adopción</h1>
-
-
 <main>
 <h2>Complete el formulario para su postulación</h2>
 <p>
     Este formulario es para procesar su solicitud. La concreción de la adopción  quedará sujeta a los datos brindados, la verificación de los mismos y la entrevista realizada.Tené en cuenta que para avanzar, el formulario debe estar completo con todos los datos solicitados reales de quien va a adoptar. En caso contrario no se avanzara con la solicitud. La respuesta puede tardar unos dias para corroborar la informacion.
 </p>
- 
-
 <div class="form-adop">
     <!-- Form -->
     <div class="contacto form">
-        
-         <form method="POST" action="/formularioAdopcionGrabar">
-            <div class="formBox">
-                <div class="inputBox">
-                    <span>Nombre y Apellido Completos</span>
-                    <input type="text"  id="nombrePersona" required>
-                </div>
-                <div class="inputBox">
-                    <span>Email</span>
-                    <input type="text" id="emailPersona" required>
-                </div>
-                <div class="inputBox">
-                    <span>Link de Instagram personal</span>
-                    <input type="text"  id="instagramPersona" required>
-                </div>
-                <div class="inputBox">
-                    <span>Teléfono</span>
-                    <input type="text"  id="telefonoPersona"required>
-                </div>
-                <div class="inputBox">
-                    <span>Fecha de nacimiento</span>
-                    <input type="date" name="fechaNac" required> 
-                </div>
-                <div class="inputBox">
-                    <span for="genero">Genero: 
-                        F <input type="radio" name="genero" value="fem">
-                        M <input type="radio" name="genero" value="masc">
-                        X <input type="radio" name="genero" value="otro">
-                    </span>
-                </div>
-                <div class="inputBox">
-                    <span for="tipoanimal">Tipo de Mascota:</span>
-                    <select id="tipoanimal" name="tipoanimal">
-                        {% for tipo in tipoAnimales %}
-                            <option value="{{ tipo[0]}}">{{ tipo[1] }}</option>
-                        {% endfor %}
-                    </select><br>
-                </div>
-                <div class="inputBox">
-                    <span for="idAnimales">Animal que quiere adoptar</span>
-                    <select id="idAnimales" name="idAnimales">
-                        {% for tipo in publicados %}
-                            <option value="{{ tipo[0]}}">{{ tipo[1] }}</option>
-                        {% endfor %}
-                    </select><br>
-                </div>
-                
-                <div class="inputBox">
-                    <span for="tipoestado">Asunto</span>
-                    <select id="tipoestado" name="tipoestado">
-                        {% for tipo in tipoEstados %}
-                            <option value="{{ tipo[0]}}">{{ tipo[1] }}</option>
-                        {% endfor %}
-                    </select><br>
-                </div>
-
-                <div class="inputBox">
-                    <span for="mascota">¿Es tu primer mascota?
-                    Si<input type="radio" id="si" name="mascota" value="si" />
-        
-                    No <input type="radio" id="no" name="mascota" value="no" />
-                </span>
-                 
-                </div>
-                <div class="inputBox"> 
-                    <span for="otrasMascotas">¿Tenes otras mascotas?
-            Si<input type="radio" id="si" name="otrasMascotas" value="si" />
-           No <input type="radio" id="no" name="rotrasMascotas" value="no" /> </span>
-                </div>
-                <div class="inputBox">
-                    <span for="castrados">En caso de tener, ¿Estan castradas?
-                    Si<input type="radio" id="si" name="castrados" value="si" />
-        
-                   No <input type="radio" id="no" name="castrados" value="no" />
-                    </span>
-                </div>
-                <div class="inputBox">
-                    <span for="vivienda">¿Vivis en casa o departamento?
-            Casa<input type="radio" id="casa" name="vivienda" value="casa" />
-
-           Departamento<input type="radio" id="departamento" name="vivienda" value="departamento" />
-        </span>
-                </div>
-                <div class="inputBox">
-                    <span for="proteccion">¿Tiene proteccion en ventanas o balcones?
-                    Si<input type="radio" id="si" name="proteccion" value="si" />
-        
-                   No <input type="radio" id="no" name="proteccion" value="no" />
-                </span>
-                 
-                </div>
-               
-                <div class="inputBox">
-                    <span for="personasHogar">¿Cuantas personas son en el hogar?
-                    1<input type="radio" id="" name="personasHogar" value="1" />
-        
-                    2<input type="radio" id="" name="personasHogar" value="2" />
-                    3 o mas<input type="radio" id="" name="personasHogar" value="3 o mas" />
-                    </span>
-                </div>
-                <div class="inputBox">
-                    <span>
-                        <input type="checkbox" name="terminos" value="si" required>
-                        Estoy dispuesto a asumir la responsabilidad y los gastos que conlleva la adopcion o transito
-                    </span>
-                 
-                </div>
-                <div class="inputBox">
-                    <span>
-                        <input type="checkbox" name="news" value="si" checked>
-                        Suscribirme al newsletter 
-                    </span>
-                 
-                </div>
-                <div class="inputBox">
-                    <span>
-                        <input type="checkbox" name="terminos" value="si" required>
-                        Acepto terminos y condiciones
-                    </span>
-                 
-                </div>
-                
-                <div class="row100">
-                <div class="inputBox">
-                    <span>¿Desea agregar algun Mensaje? </span>
-                    <textarea maxlength="250">Maximo 250 caracteres</textarea>
-                </div>
-                </div>
-                <div class="row100">
-                    
-                </div>                    
+        <form action="/formularioAdopcionGrabar" method="post">
+            <div class="inputBox">
+                <span>Nombre y Apellido Completos</span>
+                <input type="text"  id="cNombreyApellido" name="cNombreyApellido" required>
             </div>
-            <input type="submit" value="Enviar">
+            <div class="inputBox">
+                <span>Documento</span>
+                <input type="text"  id="cDNI" name="cDNI"  pattern="\d{8}" maxlength="8"required>
+            </div>
+            <div class="inputBox">
+                <span>Email</span>
+                <input type="email" id="cCorreo" name="cCorreo" required>
+            </div>
+            <div class="inputBox">
+                <span>Link de Instagram personal</span>
+                <input type="text"  id="cLinkInstagram" name="cLinkInstagram">
+            </div>
+            <div class="inputBox">
+                <span>Teléfono</span>
+                <input type="text"  id="cTelefono" name="cTelefono">
+            </div>
+            <div class="inputBox">
+                <span>Fecha de nacimiento</span>
+                <input type="date" name="dFechaNacimiento" > 
+            </div>
+
+            <div class="inputBox">
+                <span for="tipoanimal">Tipo de Mascota:</span>
+                <select id="tipoanimal" name="tipoanimal">
+                    {% for tipo in tipoAnimales %}
+                        <option value="{{ tipo[0]}}">{{ tipo[1] }}</option>
+                    {% endfor %}
+                </select><br>
+            </div>
+            <div class="inputBox">
+                <span for="idAnimales">Animal que quiere adoptar</span>
+                <select id="idAnimales" name="idAnimales">
+                    {% for tipo in publicados %}
+                        <option value="{{ tipo[0]}}">{{ tipo[1] }}</option>
+                    {% endfor %}
+                </select><br>
+            </div>
+            
+            <div class="inputBox">
+                <span for="tipoestado">Asunto</span>
+                <select id="tipoestado" name="tipoestado">
+                    {% for tipo in tipoEstados %}
+                        <option value="{{ tipo[0]}}">{{ tipo[1] }}</option>
+                    {% endfor %}
+                </select><br>
+            </div>
+            <div class="inputBox">
+                <span for="vivienda">¿Vivis en casa o departamento? <br>
+                    Casa <input type="radio" id="casa" name="cCasaDepartamento" value="casa" />
+                    Departamento <input type="radio" id="cCasaDepartamento" name="cCasaDepartamento" value="departamento" />
+                </span>
+            </div>
+          
+            <input type="submit" value="Registrar">
         </form>
         
     </div>   
@@ -188,6 +109,13 @@
       crossorigin="anonymous">
     </script>
     
+    <script>
+        document.getElementById('cDNI').addEventListener('input', function (e) {
+            var value = e.target.value;
+            // Remover cualquier carácter que no sea un dígito
+            e.target.value = value.replace(/\D/g, '').slice(0, 8);
+        });
+    </script>
       
 </body>
 </html>
