@@ -28,41 +28,41 @@ def dataContacto():
 @app.route('/login', methods=['GET', 'POST'])
 def dataLogin():
     title = "Login"
-    # if request.method == 'POST' and 'usuario' in request.form and 'contrasena' in request.form:
-    #     usuario = request.form['usuario']
-    #     contrasena = request.form['contrasena']
+    if request.method == 'POST' and 'usuario' in request.form and 'contrasena' in request.form:
+        usuario = request.form['usuario']
+        contrasena = request.form['contrasena']
         
-    #     cursor = mysql.connection.cursor()
-    #     cursor.execute('SELECT * FROM usuarios WHERE usuario = %s', (usuario,))
-    #     user = cursor.fetchone()
+        cursor = mysql.connection.cursor()
+        cursor.execute('SELECT * FROM usuario WHERE usuario = %s', (usuario,))
+        user = cursor.fetchone()
         
-    #     if user and bcrypt.check_password_hash(user[2], contrasena):  # user[2] asumiendo que la contraseña está en el tercer campo
-    #         session['loggedin'] = True
-    #         session['id'] = user[0]  # user[0] asumiendo que el ID está en el primer campo
-    #         session['usuario'] = user[1]  # user[1] asumiendo que el usuario está en el segundo campo
-    #         flash('Inicio de sesión exitoso', 'success')
-    #         return redirect(url_for('getIndex'))
-    #     else:
-    #         flash('Nombre de usuario/contraseña incorrectos', 'danger')
-    #     cursor.close()
+        if user and bcrypt.check_password_hash(user[2], contrasena):  # user[2] asumiendo que la contraseña está en el tercer campo
+            session['loggedin'] = True
+            session['id'] = user[0]  # user[0] asumiendo que el ID está en el primer campo
+            session['usuario'] = user[1]  # user[1] asumiendo que el usuario está en el segundo campo
+            flash('Inicio de sesión exitoso', 'success')
+            return redirect(url_for('getIndex'))
+        else:
+            flash('Nombre de usuario/contraseña incorrectos', 'danger')
+        cursor.close()
     return render_template('login.html', title=title)
 
 @app.route('/registrarte', methods=['GET', 'POST'])
 def dataRegistrarte():
-#     if request.method == 'POST' and 'usuario' in request.form and 'contrasena' in request.form and 'email' in request.form:
-#         usuario = request.form['usuario']
-#         contrasena = request.form['contrasena']
-#         email = request.form['email']
+    if request.method == 'POST' and 'usuario' in request.form and 'contrasena' in request.form and 'email' in request.form:
+        usuario = request.form['usuario']
+        contrasena = request.form['contrasena']
+        email = request.form['email']
         
-#         # Encriptar la contraseña
-#         hashed_password = bcrypt.generate_password_hash(contrasena).decode('utf-8')
+        # Encriptar la contraseña
+        hashed_password = bcrypt.generate_password_hash(contrasena).decode('utf-8')
         
-#         cursor = mysql.connection.cursor()
-#         cursor.execute('INSERT INTO usuarios (usuario, contrasena, email) VALUES (%s, %s, %s)', (usuario, hashed_password, email))
-#         mysql.connection.commit()
-#         cursor.close()
-#         flash('Te has registrado correctamente', 'success')
-#         return redirect(url_for('dataLogin'))
+        cursor = mysql.connection.cursor()
+        cursor.execute('INSERT INTO usuario (usuario, contrasena, email) VALUES (%s, %s, %s)', (usuario, hashed_password, email))
+        mysql.connection.commit()
+        cursor.close()
+        flash('Te has registrado correctamente', 'success')
+        return redirect(url_for('dataLogin'))
     title = "Registrarte"
     return render_template('registrarte.html', title=title)
 

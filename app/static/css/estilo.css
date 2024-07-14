@@ -13,13 +13,12 @@
 /*  Inicio del Nav */
 .navbar {
   background-color: transparent;
-  padding: 10px;
+  padding: 5px;
 }
 
 .nav-item {
   justify-items: center;
-  margin: 0 10px;
-  padding: 15px;
+  padding: 10px;
 }
 
 .nav-item a {
@@ -51,7 +50,7 @@
   border-radius: 60%;
   width: fit-content; /* Ajusta el tamaño */
   height: 7em; /* Ajusta el tamaño */
-  background-color: #a1c398; /* Cambia el color de fondo */
+  background-color: #a1c398;
 }
 
 /* Fin del Nav */
@@ -649,7 +648,7 @@ body .contactame {
   width: 400px;
   height: 450px;
   background: transparent;
-  color: #333;
+  color: #fff;
   border: 2px solid rgba(48, 41, 41, 0.5);
   border-radius: 20px;
   display: flex;
@@ -661,7 +660,7 @@ body .contactame {
 
 h2{
   font-size: 2em;
-  columns: black;
+  columns: #fff;
   text-align: center;
 }
 
@@ -669,7 +668,7 @@ h2{
   position: relative;
   width: 310px;
   margin: 30px 0;
-  border-bottom: 2px solid #333;
+  border-bottom: 2px solid #fff;
 }
 
 .input-box label {
@@ -678,7 +677,7 @@ h2{
   left: 5px;
   transform: translateY(-50%);
   font-size: 1em;
-  color: #333;
+  color: #fff;
   pointer-events: none;
   transition: .5s;
 }
@@ -694,14 +693,14 @@ h2{
   border: none;
   outline: none;
   font-size: 1em;
-  color: #333;
+  color: #fff;
   padding: 0 35px 0 5px;
 }
 
 .input-box .icon {
   position: absolute;
   right: 8px;
-  color: #333;
+  color: #fff;
   font-size: 1.2em;
   line-height: 57px;
 }
@@ -709,7 +708,7 @@ h2{
 .remember-forgot{
   margin: -15px 0 15px;
   font-size: .9em;
-  color: #333;
+  color: #fff;
   display: flex;
   justify-content: space-between;
 }
@@ -719,7 +718,7 @@ h2{
 }
 
 .remember-forgot a{
-  color: #333;
+  color: #fff;
   text-decoration: none;
 }
 
@@ -736,19 +735,19 @@ button {
   border-radius: 40px;
   cursor: pointer;
   font-size: 1em;
-  color: #333;
+  color: #fff;
   font-weight: 500;
 }
 
 .register-link{
   font-size: .9em;
-  color: #333;
+  color: #fff;
   text-align: center;
   margin: 25px 0 10px;
 }
 
 .register-link p a{
-  color: #333;
+  color: #fff;
   text-decoration: none;
   font-weight: 600;
 }
@@ -756,24 +755,6 @@ button {
 .register-link p a:hover{
   text-decoration: underline;
 }
-
-/* Registrarse
-body .loguearse-sesion{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100vh;
-  background: url('../img/perritos.tiernos.jpg') no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-@keyframes animateBg{
-  100%{
-      filter: hue-rotate(360deg);
-  }
-}*/
-
 
 @media (max-width: 360px){
   .login-box{
