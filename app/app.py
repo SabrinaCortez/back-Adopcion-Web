@@ -1,52 +1,92 @@
-from flask import Flask,render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for, flash, session
+from flask_mysqldb import MySQL
+from flask_bcrypt import Bcrypt
 from controller import *
 
 app = Flask(__name__)
+app.secret_key = 'your_secret_key'  # Cambia esto por una clave secreta segura
 
+# Configuración de la base de datos
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_DB'] = 'adopcion'
+
+mysql = MySQL(app)
+bcrypt = Bcrypt(app)
 
 @app.route('/')
 def getIndex():
-    title="Index"
-    # conexion = probar_Conexion()
-    # print (conexion)
-    return render_template("index.html",title=title)
+    title = "Index"
+    return render_template("index.html", title=title)
 
 @app.route('/contacto')
 def dataContacto():
-    title="Contacto"
-    return render_template("contacto.html",title=title)
+    title = "Contacto"
+    return render_template("contacto.html", title=title)
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def dataLogin():
-    title="Login"
-    return render_template("login.html",title=title)
+    title = "Login"
+    # if request.method == 'POST' and 'usuario' in request.form and 'contrasena' in request.form:
+    #     usuario = request.form['usuario']
+    #     contrasena = request.form['contrasena']
+        
+    #     cursor = mysql.connection.cursor()
+    #     cursor.execute('SELECT * FROM usuarios WHERE usuario = %s', (usuario,))
+    #     user = cursor.fetchone()
+        
+    #     if user and bcrypt.check_password_hash(user[2], contrasena):  # user[2] asumiendo que la contraseña está en el tercer campo
+    #         session['loggedin'] = True
+    #         session['id'] = user[0]  # user[0] asumiendo que el ID está en el primer campo
+    #         session['usuario'] = user[1]  # user[1] asumiendo que el usuario está en el segundo campo
+    #         flash('Inicio de sesión exitoso', 'success')
+    #         return redirect(url_for('getIndex'))
+    #     else:
+    #         flash('Nombre de usuario/contraseña incorrectos', 'danger')
+    #     cursor.close()
+    return render_template('login.html', title=title)
 
-@app.route('/registrarte')
+@app.route('/registrarte', methods=['GET', 'POST'])
 def dataRegistrarte():
-    title="Registrarte"
-    return render_template("registrarte.html",title=title)
+#     if request.method == 'POST' and 'usuario' in request.form and 'contrasena' in request.form and 'email' in request.form:
+#         usuario = request.form['usuario']
+#         contrasena = request.form['contrasena']
+#         email = request.form['email']
+        
+#         # Encriptar la contraseña
+#         hashed_password = bcrypt.generate_password_hash(contrasena).decode('utf-8')
+        
+#         cursor = mysql.connection.cursor()
+#         cursor.execute('INSERT INTO usuarios (usuario, contrasena, email) VALUES (%s, %s, %s)', (usuario, hashed_password, email))
+#         mysql.connection.commit()
+#         cursor.close()
+#         flash('Te has registrado correctamente', 'success')
+#         return redirect(url_for('dataLogin'))
+    title = "Registrarte"
+    return render_template('registrarte.html', title=title)
 
 @app.route('/perros')
 def dataPerros():
-    title="Perros"
+    title = "Perros"
     perros = obtener_AnimalesPublicados('PE')
-    return render_template("perros.html",title=title,perros=perros)
+    return render_template("perros.html", title=title, perros=perros)
 
 @app.route('/gatos')
 def dataGatos():
-    title="Gatos"
+    title = "Gatos"
     gatos = obtener_AnimalesPublicados('GA')
-    return render_template("gatos.html",title=title,gatos=gatos)
+    return render_template("gatos.html", title=title, gatos=gatos)
 
 @app.route('/nosotros')
 def dataNosotros():
-    title="Nosotros"
-    return render_template("nosotros.html",title=title)
+    title = "Nosotros"
+    return render_template("nosotros.html", title=title)
 
 @app.route('/donar')
 def dataDonar():
-    title="Donar"
-    return render_template("donar.html",title=title)
+    title = "Donar"
+    return render_template("donar.html", title=title)
 
 @app.route('/formAdopsion')
 def dataForm():
@@ -63,13 +103,13 @@ def dataTransito():
     title="Transito"
     perros = obtener_AnimalesEnTransito('PE')
     gatos = obtener_AnimalesEnTransito('GA')
-    return render_template("transito.html",title=title,perros= perros,gatos =gatos )
+    return render_template("transito.html",title=title,perros=perros,gatos=gatos )
 
 @app.route('/listadoadoptantes')
 def Adoptantes_Listado():
     title="Listado Adoptantes"
     adoptantes = adoptante_solicitudes()
-    return render_template("listadoAdoptantes.html",title=title,adoptantes= adoptantes)
+    return render_template("listadoAdoptantes.html",title=title,adoptantes=adoptantes)
 
 @app.route('/adoptante_Confirmar/<string:cDNI>/<int:idAnimales>')
 def adoptante_Confirmar(cDNI,idAnimales):

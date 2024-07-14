@@ -629,7 +629,7 @@ body .contactame {
 }
 
 
-body .loguearse{
+.loguearse-sesion{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -649,8 +649,8 @@ body .loguearse{
   width: 400px;
   height: 450px;
   background: transparent;
-  color: #fff;
-  border: 2px solid rgba(255, 255, 255, .5);
+  color: #333;
+  border: 2px solid rgba(48, 41, 41, 0.5);
   border-radius: 20px;
   display: flex;
   justify-content: center;
@@ -661,7 +661,7 @@ body .loguearse{
 
 h2{
   font-size: 2em;
-  columns: white;
+  columns: black;
   text-align: center;
 }
 
@@ -669,7 +669,7 @@ h2{
   position: relative;
   width: 310px;
   margin: 30px 0;
-  border-bottom: 2px solid #fff;
+  border-bottom: 2px solid #333;
 }
 
 .input-box label {
@@ -678,7 +678,7 @@ h2{
   left: 5px;
   transform: translateY(-50%);
   font-size: 1em;
-  color: #fff;
+  color: #333;
   pointer-events: none;
   transition: .5s;
 }
@@ -694,14 +694,14 @@ h2{
   border: none;
   outline: none;
   font-size: 1em;
-  color: #fff;
+  color: #333;
   padding: 0 35px 0 5px;
 }
 
 .input-box .icon {
   position: absolute;
   right: 8px;
-  color: #fff;
+  color: #333;
   font-size: 1.2em;
   line-height: 57px;
 }
@@ -709,7 +709,7 @@ h2{
 .remember-forgot{
   margin: -15px 0 15px;
   font-size: .9em;
-  color: #fff;
+  color: #333;
   display: flex;
   justify-content: space-between;
 }
@@ -719,7 +719,7 @@ h2{
 }
 
 .remember-forgot a{
-  color: #fff;
+  color: #333;
   text-decoration: none;
 }
 
@@ -730,25 +730,25 @@ h2{
 button {
   width: 100%;
   height: 40px;
-  background: #fff;
+  background: green;
   border: none;
   outline: none;
   border-radius: 40px;
   cursor: pointer;
   font-size: 1em;
-  color: #000;
+  color: #333;
   font-weight: 500;
 }
 
 .register-link{
   font-size: .9em;
-  color: #fff;
+  color: #333;
   text-align: center;
   margin: 25px 0 10px;
 }
 
 .register-link p a{
-  color: #fff;
+  color: #333;
   text-decoration: none;
   font-weight: 600;
 }
@@ -757,8 +757,8 @@ button {
   text-decoration: underline;
 }
 
-/* Registrarse */
-body .registrarse{
+/* Registrarse
+body .loguearse-sesion{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -772,7 +772,7 @@ body .registrarse{
   100%{
       filter: hue-rotate(360deg);
   }
-}
+}*/
 
 
 @media (max-width: 360px){

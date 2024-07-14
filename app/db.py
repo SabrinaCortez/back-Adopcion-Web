@@ -10,7 +10,7 @@ from pymysql import Error
 host = "localhost"
 user = "root"
 clave= ""
-db="adopciones"
+db="adopcion"
 
 # remota -> pythonenaywhere
 #host = "adrianreciomdq.mysql.pythonanywhere-services.com"

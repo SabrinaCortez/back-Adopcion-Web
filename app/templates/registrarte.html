@@ -1,36 +1,37 @@
 {% include 'defaults/head.html'%}
-<body class="registrarse">
+<body>
 
     <!--MENU ENCABEZADO-->
 {% include 'defaults/header.html' %}     
 
 <section>
-  <div class="login-box">
-    <form action="">
-      <h2>Registrarte</h2>
-      <div class="input-box">
-        <span class="icon"><ion-icon name="person"></ion-icon></span>
-        <input type="user" required />
-        <label>Usuario</label>
-      </div>
-      <div class="input-box">
-        <span class="icon"><ion-icon name="unlock"></ion-icon></span>
-        <input type="password" required />
-        <label>Contraseña</label>
-      </div>
-      <div class="input-box">
-        <span class="icon"><ion-icon name="Email"></ion-icon></span>
-        <input type="password" required />
-        <label>Email</label>
-      </div>
-      <button type="submit">Aceptar</button>
-    </form>
+  <div class="loguearse-sesion">
+    <div class="login-box">
+      <form method="POST" action="{{ url_for('dataRegistrarte') }}">
+        <h2>Registrarse</h2>
+        <div class="input-box">
+          <span class="icon"><ion-icon id="usuario" name="person"></ion-icon></span>
+          <input type="text" name="usuario" required />
+          <label>Usuario</label>
+        </div>
+        <div class="input-box">
+          <span class="icon"><ion-icon id="contrasena" name="unlock"></ion-icon></span>
+          <input type="password" name="contrasena" required />
+          <label>Contraseña</label>
+        </div>
+        <div class="input-box">
+          <span class="icon"><ion-icon id="email" name="mail"></ion-icon></span>
+          <input type="email" name="email" required />
+          <label>Email</label>
+        </div>
+        <button type="submit">Aceptar</button>
+      </form>
+    </div>
   </div>
-
-
 </section>
-        <!-- Pie de pagina(footer) -->
-        {% include 'defaults/footer.html'%}
+  <!-- Pie de pagina(footer) -->
+  {% include 'defaults/footer.html'%}
+      <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
         <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
