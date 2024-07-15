@@ -7,22 +7,17 @@
 <section>
   <div class="loguearse-sesion">
     <div class="login-box">
-      <form method="POST" action="{{ url_for('dataRegistrarte') }}">
+      <form method="POST" action="{{ url_for('registrarse') }}">
         <h2>Registrarse</h2>
         <div class="input-box">
-          <span class="icon"><ion-icon id="usuario" name="person"></ion-icon></span>
-          <input type="text" name="usuario" required />
+          <span class="icon"><ion-icon  ></ion-icon></span>
+          <input type="text" id="usuario" name="usuario"  required />
           <label>Usuario</label>
         </div>
         <div class="input-box">
-          <span class="icon"><ion-icon id="contrasena" name="unlock"></ion-icon></span>
-          <input type="password" name="contrasena" required />
+          <span class="icon"><ion-icon ></ion-icon></span>
+          <input type="password" id="password" name="password" required />
           <label>Contraseña</label>
-        </div>
-        <div class="input-box">
-          <span class="icon"><ion-icon id="email" name="mail"></ion-icon></span>
-          <input type="email" name="email" required />
-          <label>Email</label>
         </div>
         <button type="submit">Aceptar</button>
       </form>

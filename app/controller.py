@@ -1,7 +1,6 @@
 from db import conexionMySQL
 from datetime import date
 
-
 # para probar
 def probar_Conexion():
     return conexionMySQL()

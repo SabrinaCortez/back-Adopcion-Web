@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, redirect, url_for, flash, ses
 from flask_mysqldb import MySQL
 from flask_bcrypt import Bcrypt
 from controller import *
+import MySQLdb.cursors
+
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Cambia esto por una clave secreta segura
@@ -10,7 +12,7 @@ app.secret_key = 'your_secret_key'  # Cambia esto por una clave secreta segura
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''
-app.config['MYSQL_DB'] = 'adopcion'
+app.config['MYSQL_DB'] = 'adopciones'
 
 mysql = MySQL(app)
 bcrypt = Bcrypt(app)
@@ -24,47 +26,6 @@ def getIndex():
 def dataContacto():
     title = "Contacto"
     return render_template("contacto.html", title=title)
-
-@app.route('/login', methods=['GET', 'POST'])
-def dataLogin():
-    title = "Login"
-    if request.method == 'POST' and 'usuario' in request.form and 'contrasena' in request.form:
-        usuario = request.form['usuario']
-        contrasena = request.form['contrasena']
-        
-        cursor = mysql.connection.cursor()
-        cursor.execute('SELECT * FROM usuario WHERE usuario = %s', (usuario,))
-        user = cursor.fetchone()
-        
-        if user and bcrypt.check_password_hash(user[2], contrasena):  # user[2] asumiendo que la contraseña está en el tercer campo
-            session['loggedin'] = True
-            session['id'] = user[0]  # user[0] asumiendo que el ID está en el primer campo
-            session['usuario'] = user[1]  # user[1] asumiendo que el usuario está en el segundo campo
-            flash('Inicio de sesión exitoso', 'success')
-            return redirect(url_for('getIndex'))
-        else:
-            flash('Nombre de usuario/contraseña incorrectos', 'danger')
-        cursor.close()
-    return render_template('login.html', title=title)
-
-@app.route('/registrarte', methods=['GET', 'POST'])
-def dataRegistrarte():
-    if request.method == 'POST' and 'usuario' in request.form and 'contrasena' in request.form and 'email' in request.form:
-        usuario = request.form['usuario']
-        contrasena = request.form['contrasena']
-        email = request.form['email']
-        
-        # Encriptar la contraseña
-        hashed_password = bcrypt.generate_password_hash(contrasena).decode('utf-8')
-        
-        cursor = mysql.connection.cursor()
-        cursor.execute('INSERT INTO usuario (usuario, contrasena, email) VALUES (%s, %s, %s)', (usuario, hashed_password, email))
-        mysql.connection.commit()
-        cursor.close()
-        flash('Te has registrado correctamente', 'success')
-        return redirect(url_for('dataLogin'))
-    title = "Registrarte"
-    return render_template('registrarte.html', title=title)
 
 @app.route('/perros')
 def dataPerros():
@@ -106,10 +67,17 @@ def dataTransito():
     return render_template("transito.html",title=title,perros=perros,gatos=gatos )
 
 @app.route('/listadoadoptantes')
-def Adoptantes_Listado():
+def listadoadoptantes():
     title="Listado Adoptantes"
-    adoptantes = adoptante_solicitudes()
-    return render_template("listadoAdoptantes.html",title=title,adoptantes=adoptantes)
+    print(f"session {session['loggedin']}")
+    if 'loggedin' in session :
+        logeado = session['loggedin']
+        if logeado:
+            adoptantes = adoptante_solicitudes()
+            return render_template("listadoAdoptantes.html",title=title,adoptantes= adoptantes)
+        return redirect(url_for('login'))    
+    return redirect(url_for('login'))
+
 
 @app.route('/adoptante_Confirmar/<string:cDNI>/<int:idAnimales>')
 def adoptante_Confirmar(cDNI,idAnimales):
@@ -124,8 +92,7 @@ def adoptante_Anular(cDNI,idAnimales):
     print(idAnimales)
     return redirect("/listadoadoptantes")
 
-
-    # Ruta para procesar el formulario
+ # Ruta para procesar el formulario
 @app.route('/formularioAdopcionGrabar', methods = ['POST'])
 def formularioAdopcion_Grabar():
     # Obtener el valor seleccionado del combo box
@@ -145,4 +112,58 @@ def formularioAdopcion_Grabar():
     print  (f"El tipo de animal seleccionado tiene el ID:  {cCasaDepartamento}{dFechaNacimiento} {cTelefono}{cLinkInstagram}{cCorreo} {cDNI}{cNombreyApellido} {idAnimales} {tipoanimal} {tipoestado}")
     return redirect("/")
 #f"El tipo de animal seleccionado tiene el ID:{cCasaDepartamento}{dFechaNacimiento}{cTelefono} {cNombreyApellido} {idAnimales} {tipoanimal} {tipoestado}"
+
+# Ruta de login
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        usuario = request.form['usuario']
+        password = request.form['password']
+        
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM usuario WHERE usuario = %s', (usuario,))
+        user = cursor.fetchone()
+        cursor.close()
+        print('validando ...')
+        if user and bcrypt.check_password_hash(user['contrasena'], password):
+            session['loggedin'] = True
+            session['id'] = user['id']
+            session['username'] = user['usuario']
+            flash('Has iniciado sesión exitosamente!', 'success')
+            return redirect(url_for('listadoadoptantes'))
+        
+        else:
+            session.pop('loggedin', None)
+            session.pop('id', None)
+            session.pop('username', None)
+            flash('Nombre de usuario/contraseña incorrectos', 'danger')
+    return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+    session.pop('loggedin', None)
+    session.pop('id', None)
+    session.pop('username', None)
+    flash('Has cerrado sesión', 'success')
+    return redirect(url_for('login'))
+
+# Ruta de registro
+@app.route('/registrarse', methods=['GET', 'POST'])
+def registrarse():
+    if request.method == 'POST':
+        usuario = request.form['usuario']
+        password = request.form['password']
+        hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+        
+        cursor = mysql.connection.cursor()
+        cursor.execute('INSERT INTO usuario (usuario, contrasena) VALUES (%s, %s)', (usuario, hashed_password))
+        mysql.connection.commit()
+        cursor.close()
+        flash('Te has registrado exitosamente!', 'success')
+        return redirect(url_for('login'))
+    return render_template('registrarse.html')
+
+
+
+   
 
