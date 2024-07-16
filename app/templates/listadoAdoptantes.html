@@ -1,23 +1,25 @@
-{% include 'defaults/head.html'%}
+{% include 'defaults/head.html' %}
 <style>
     .col-cDNI { width: 8%; }
     .col-cNombreyApellido { width: 20%; }
     .col-cDescripcion { width: 15%; }
     .col-cCorreo { width: 10%; }
-    
     .col-cMascota { width: 20%; }
     .col-dDesde { width: 10%; }
     .col-Confirmar { width: 10%; }
     .col-Anular { width: 10%; }
-  </style>
+    .col-Eliminar { width: 10%; }
+</style>
 <body>
 
     <!--MENU ENCABEZADO-->
-{% include 'defaults/header.html' %}     
+    {% include 'defaults/header.html' %}     
 
-<section>
-    <h2> Listado de adoptantes</h2>
+<section class="contacto form">
+    <h2>Control de Adoptantes y Animales</h2>
     <div class="container">
+
+        <h3 class="mt-5">Adoptantes</h3>
         <table class="table table-bordered">
             <thead class="thead-dark">
             <tr>
@@ -29,34 +31,77 @@
                 <th class="col-dDesde">Desde</th>
                 <th class="col-Confirmar">Confirmar</th>
                 <th class="col-Anular">Anular</th>
+                <th class="col-Eliminar">Eliminar</th>
             </tr>
             </thead>
             <tbody>
-                {% for persona in adoptantes%}
+                {% for persona in adoptantes %}
                 <tr>
-                    <td>{{persona[0]}}</td>
-                    <td>{{persona[1]}}</td>
-                    <td>{{persona[2]}}</td>
-                    <td>{{persona[4]}}</td>
-                    <td>{{persona[6]}}</td>
-                    <td>{{persona[7]}}</td>
+                    <td>{{ persona[0] }}</td>
+                    <td>{{ persona[1] }}</td>
+                    <td>{{ persona[2] }}</td>
+                    <td>{{ persona[4] }}</td>
+                    <td>{{ persona[6] }}</td>
+                    <td>{{ persona[7] }}</td>
                     <td>
-                        <a href="adoptante_Confirmar/{{persona[0]}}/{{persona[5]}}" class="btn btn-white"><i class="bi bi-pencil-fill"></i></a>
+                        <a href="adoptante_Confirmar/{{ persona[0] }}/{{ persona[5] }}" class="btn btn-white"><i class="bi bi-pencil-fill"></i></a>
                     </td>
                     <td>
-                        <a href="/adoptante_Anular/{{persona[0]}}//{{persona[5]}}" class="btn btn-white"><i class="bi bi-trash-fill"></i></a>
+                        <a href="/adoptante_Anular/{{ persona[0] }}/{{ persona[5] }}" class="btn btn-white"><i class="bi bi-trash-fill"></i></a>
+                    </td>
+                    <td>
+                        <form action="{{ url_for('eliminar_animal', idAnimales=persona[5]) }}" method="POST" style="display:inline;">
+                            <button type="submit" class="btn btn-danger"><i class="bi bi-trash-fill"></i></button>
+                        </form>
                     </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>           
     </div>
+        <!-- Formulario para agregar animales -->
+        <h3>Agregar Animal</h3>
+        <form method="POST" action="{{ url_for('listadoadoptantes') }}">
+            <div class="mb-3">
+                <label for="cNombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="cNombre" name="cNombre" required>
+            </div>
+            <div class="mb-3">
+                <label for="cRaza" class="form-label">Raza</label>
+                <input type="text" class="form-control" id="cRaza" name="cRaza" required>
+            </div>
+            <div class="mb-3">
+                <label for="cEdad" class="form-label">Edad</label>
+                <input type="text" class="form-control" id="cEdad" name="cEdad" required>
+            </div>
+            <div class="mb-3">
+                <label for="cCondicionEspecial" class="form-label">Condición Especial</label>
+                <input type="text" class="form-control" id="cCondicionEspecial" name="cCondicionEspecial">
+            </div>
+            <div class="mb-3">
+                <label for="cSexo" class="form-label">Sexo</label>
+                <select class="form-control" id="cSexo" name="cSexo" required>
+                    <option value="M">Macho</option>
+                    <option value="H">Hembra</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="cidTipoAnimal" class="form-label">Tipo de Animal</label>
+                <select class="form-control" id="cidTipoAnimal" name="cidTipoAnimal" required>
+                    {% for tipo in tipoAnimales %}
+                        <option value="{{ tipo[0] }}">{{ tipo[1] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="cImagen" class="form-label">Imagen</label>
+                <input type="text" class="form-control" id="cImagen" name="cImagen" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Agregar Animal</button>
+        </form>
+
         <!-- Pie de pagina(footer) -->
-       
-        <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous">
-      </script>
+    {% include 'defaults/footer.html' %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>       
 </html>

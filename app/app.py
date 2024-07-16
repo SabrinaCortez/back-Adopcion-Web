@@ -6,7 +6,7 @@ import MySQLdb.cursors
 
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'  # Cambia esto por una clave secreta segura
+app.secret_key = 'your_secret_key' # Cambia esto por una clave secreta segura
 
 # Configuración de la base de datos
 app.config['MYSQL_HOST'] = 'localhost'
@@ -66,18 +66,45 @@ def dataTransito():
     gatos = obtener_AnimalesEnTransito('GA')
     return render_template("transito.html",title=title,perros=perros,gatos=gatos )
 
-@app.route('/listadoadoptantes')
+# @app.route('/listadoadoptantes')
+# def listadoadoptantes():
+#     title="Listado Adoptantes"
+#     print(f"session {session['loggedin']}")
+#     if 'loggedin' in session :
+#         logeado = session['loggedin']
+#         if logeado:
+#             adoptantes = adoptante_solicitudes()
+#             return render_template("listadoAdoptantes.html",title=title,adoptantes= adoptantes)
+#         return redirect(url_for('login'))    
+#     return redirect(url_for('login'))
+
+@app.route('/listadoadoptantes', methods=['GET', 'POST'])
 def listadoadoptantes():
-    title="Listado Adoptantes"
-    print(f"session {session['loggedin']}")
-    if 'loggedin' in session :
+    title = "Listado Adoptantes"
+    if 'loggedin' in session:
         logeado = session['loggedin']
         if logeado:
-            adoptantes = adoptante_solicitudes()
-            return render_template("listadoAdoptantes.html",title=title,adoptantes= adoptantes)
-        return redirect(url_for('login'))    
-    return redirect(url_for('login'))
+            if request.method == 'POST':
+                cNombre = request.form['cNombre']
+                cRaza = request.form['cRaza']
+                cEdad = request.form['cEdad']
+                cCondicionEspecial = request.form['cCondicionEspecial']
+                cSexo = request.form['cSexo']
+                cidTipoAnimal = request.form['cidTipoAnimal']
+                cImagen = request.form['cImagen']
+                
+                cursor = mysql.connection.cursor()
+                cursor.execute('INSERT INTO animales (cNombre, cRaza, cEdad, cCondicionEspecial, cSexo, cidTipoAnimal, cImagen) VALUES (%s, %s, %s, %s, %s, %s, %s)', 
+                               (cNombre, cRaza, cEdad, cCondicionEspecial, cSexo, cidTipoAnimal, cImagen))
+                mysql.connection.commit()
+                cursor.close()
+                flash('Animal agregado exitosamente!', 'success')
 
+            adoptantes = adoptante_solicitudes()
+            tipoAnimales = obtener_TipoAnimales()  # Función que obtenga los tipos de animales
+            return render_template("listadoAdoptantes.html", title=title, adoptantes=adoptantes, tipoAnimales=tipoAnimales)
+        return redirect(url_for('login'))
+    return redirect(url_for('login'))
 
 @app.route('/adoptante_Confirmar/<string:cDNI>/<int:idAnimales>')
 def adoptante_Confirmar(cDNI,idAnimales):
@@ -162,8 +189,3 @@ def registrarse():
         flash('Te has registrado exitosamente!', 'success')
         return redirect(url_for('login'))
     return render_template('registrarse.html')
-
-
-
-   
-
