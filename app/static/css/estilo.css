@@ -636,6 +636,9 @@ h1 {
   padding: 40px 100px;
   font-size: 20px;
 }
+.listadoAdop h1{
+  color: #044749;
+}
 .listadoAdop h3 {
   font-size: 28px;
   align-items: center;
@@ -644,6 +647,55 @@ h1 {
   text-align: center;
   margin-top: 32px;
 }
+
+/* Agregar Animales */
+.form-agregar-animal {
+  max-width: 600px; /* Ancho máximo del formulario */
+  margin: 30px auto; /* Centrar horizontalmente */
+  padding: 20px; /* Espacio interior */
+  border: 1px solid #04892a; /* Borde del formulario */
+  border-radius: 5px; /* Bordes redondeados */
+  box-shadow: 10 10 20px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+
+.form-agregar-animal h2 {
+  text-align: center; /* Centrar el título */
+}
+
+.form-agregar-animal form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-agregar-animal label {
+  margin-bottom: 10px;
+}
+
+.form-agregar-animal input[type="text"],
+.form-agregar-animal select {
+  width: calc(100% - 20px); /* Ancho del campo de entrada */
+  padding: 10px; /* Espacio interior */
+  margin-bottom: 15px; /* Margen inferior */
+  border: 1px solid #ccc; /* Borde */
+  border-radius: 3px; /* Bordes redondeados */
+  font-size: 16px; /* Tamaño de fuente */
+}
+
+.form-agregar-animal input[type="submit"] {
+  background-color: #4CAF50; /* Color de fondo del botón */
+  color: white; /* Color del texto */
+  border: none; /* Sin borde */
+  padding: 12px 20px; /* Espacio interior */
+  cursor: pointer; /* Cambiar cursor al pasar por encima */
+  border-radius: 3px; /* Bordes redondeados */
+  font-size: 16px; /* Tamaño de fuente */
+  transition: background-color 0.3s; /* Transición de color de fondo */
+}
+
+.form-agregar-animal input[type="submit"]:hover {
+  background-color: #45a049; /* Color de fondo al pasar por encima */
+}
+
 
 /* Loguearse */
 .loguearse-sesion{

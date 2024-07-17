@@ -1,108 +1,133 @@
 {% include 'defaults/head.html' %}
-<!-- <style>
-    .col-cDNI { width: 8%; }
-    .col-cNombreyApellido { width: 20%; }
-    .col-cDescripcion { width: 15%; }
-    .col-cCorreo { width: 10%; }
-    .col-cMascota { width: 20%; }
-    .col-dDesde { width: 10%; }
-    .col-Confirmar { width: 10%; }
-    .col-Anular { width: 10%; }
-    .col-Eliminar { width: 10%; }
-</style> -->
+
 <body>
 
-    <!--MENU ENCABEZADO-->
-    {% include 'defaults/header.html' %}     
+    <!-- MENU ENCABEZADO -->
+    {% include 'defaults/header.html' %}
 
-<section class="listadoAdop">
-    <h2 class="contactotitulo">Control de Adoptantes y Animales</h2>
-    <div class="container">
+    <section class="listadoAdop">
+        <div class="contactame">
+            <div class="contactotitulo">
+              <h1 class="animate__animated animate__flip animate__delay-1s">Control de Adoptantes y Animales</h1>
+            </div>
+          </div>
+        
+            <h2 class="mt-5">Adoptantes</h2>
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th class="col-cDNI">Documento</th>
+                        <th class="col-cNombreyApellido">Nombre</th>
+                        <th class="col-cCorreo">Correo</th>
+                        <th class="col-cDescripcion">Trámite</th>
+                        <th class="col-cMascota">Mascota</th>
+                        <th class="col-dDesde">Desde</th>
+                        <th class="col-Confirmar">Confirmar</th>
+                        <th class="col-Anular">Anular</th>
+                        <th class="col-Eliminar">Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for persona in adoptantes %}
+                    <tr>
+                        <td>{{ persona[0] }}</td>
+                        <td>{{ persona[1] }}</td>
+                        <td>{{ persona[2] }}</td>
+                        <td>{{ persona[4] }}</td>
+                        <td>{{ persona[6] }}</td>
+                        <td>{{ persona[7] }}</td>
+                        <td>
+                            <a href="adoptante_Confirmar/{{ persona[0] }}/{{ persona[5] }}" class="btn btn-white"><i class="bi bi-pencil-fill"></i></a>
+                        </td>
+                        <td>
+                            <a href="/adoptante_Anular/{{ persona[0] }}/{{ persona[5] }}" class="btn btn-white"><i class="bi bi-trash-fill"></i></a>
+                        </td>
+                        <td>
+                            <form action="{{ url_for('eliminar_animal', idAnimales=persona[5]) }}" method="POST" style="display:inline;">
+                                <button type="submit" class="btn btn-danger"><i class="bi bi-trash-fill"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
 
-        <h3 class="mt-5">Adoptantes</h3>
+        <h2>Listado de Animales</h2>
+
         <table class="table table-bordered">
-            <thead class="thead-dark">
-            <tr>
-                <th class="col-cDNI">Documento</th>
-                <th class="col-cNombreyApellido">Nombre</th>
-                <th class="col-cCorreo">Correo</th>
-                <th class="col-cDescripcion">Tramite</th>
-                <th class="col-cMascota">Mascota</th>
-                <th class="col-dDesde">Desde</th>
-                <th class="col-Confirmar">Confirmar</th>
-                <th class="col-Anular">Anular</th>
-                <th class="col-Eliminar">Eliminar</th>
-            </tr>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Raza</th>
+                    <th>Edad</th>
+                    <th>Condición Especial</th>
+                    <th>Sexo</th>
+                    <th>Tipo de Animal</th>
+                    <th>Imagen</th>
+                    <th>Acciones</th>
+                </tr>
             </thead>
             <tbody>
-                {% for persona in adoptantes %}
+                {% for animal in animales %}
                 <tr>
-                    <td>{{ persona[0] }}</td>
-                    <td>{{ persona[1] }}</td>
-                    <td>{{ persona[2] }}</td>
-                    <td>{{ persona[4] }}</td>
-                    <td>{{ persona[6] }}</td>
-                    <td>{{ persona[7] }}</td>
+                    <td>{{ animal.idAnimales }}</td>
+                    <td>{{ animal.cNombre }}</td>
+                    <td>{{ animal.cRaza }}</td>
+                    <td>{{ animal.cEdad }}</td>
+                    <td>{{ animal.cCondicionEspecial }}</td>
+                    <td>{{ 'Macho' if animal.cSexo == 'M' else 'Hembra' }}</td>
+                    <td>{{ animal.cidTipoAnimal }}</td>
+                    <td>{{ animal.cImagen }}</td>
                     <td>
-                        <a href="adoptante_Confirmar/{{ persona[0] }}/{{ persona[5] }}" class="btn btn-white"><i class="bi bi-pencil-fill"></i></a>
-                    </td>
-                    <td>
-                        <a href="/adoptante_Anular/{{ persona[0] }}/{{ persona[5] }}" class="btn btn-white"><i class="bi bi-trash-fill"></i></a>
-                    </td>
-                    <td>
-                        <form action="{{ url_for('eliminar_animal', idAnimales=persona[5]) }}" method="POST" style="display:inline;">
-                            <button type="submit" class="btn btn-danger"><i class="bi bi-trash-fill"></i></button>
-                        </form>
+                        <a href="/eliminar_animal/{{ animal.idAnimales }}" onclick="return confirm('¿Estás seguro de que deseas eliminar este animal?');">Eliminar</a>
                     </td>
                 </tr>
                 {% endfor %}
             </tbody>
-        </table>           
-    </div>
-        <!-- Formulario para agregar animales -->
-        <h3>Agregar Animal</h3>
-        <form method="POST" action="{{ url_for('listadoadoptantes') }}">
-            <div class="mb-3">
-                <label for="cNombre" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="cNombre" name="cNombre" required>
-            </div>
-            <div class="mb-3">
-                <label for="cRaza" class="form-label">Raza</label>
-                <input type="text" class="form-control" id="cRaza" name="cRaza" required>
-            </div>
-            <div class="mb-3">
-                <label for="cEdad" class="form-label">Edad</label>
-                <input type="text" class="form-control" id="cEdad" name="cEdad" required>
-            </div>
-            <div class="mb-3">
-                <label for="cCondicionEspecial" class="form-label">Condición Especial</label>
-                <input type="text" class="form-control" id="cCondicionEspecial" name="cCondicionEspecial">
-            </div>
-            <div class="mb-3">
-                <label for="cSexo" class="form-label">Sexo</label>
-                <select class="form-control" id="cSexo" name="cSexo" required>
-                    <option value="M">Macho</option>
-                    <option value="H">Hembra</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="cidTipoAnimal" class="form-label">Tipo de Animal</label>
-                <select class="form-control" id="cidTipoAnimal" name="cidTipoAnimal" required>
-                    {% for tipo in tipoAnimales %}
-                        <option value="{{ tipo[0] }}">{{ tipo[1] }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="cImagen" class="form-label">Imagen</label>
-                <input type="text" class="form-control" id="cImagen" name="cImagen" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Agregar Animal</button>
+        </table>
+
+    </section>
+
+    <section class="form-agregar-animal">
+        <h2>Agregar Nuevo Animal</h2>
+        <form action="/listadoadoptantes" method="POST">
+            <label for="cNombre">Nombre:</label>
+            <input type="text" id="cNombre" name="cNombre" required><br><br>
+
+            <label for="cRaza">Raza:</label>
+            <input type="text" id="cRaza" name="cRaza" required><br><br>
+
+            <label for="cEdad">Edad:</label>
+            <input type="text" id="cEdad" name="cEdad" required><br><br>
+
+            <label for="cCondicionEspecial">Condición Especial:</label>
+            <input type="text" id="cCondicionEspecial" name="cCondicionEspecial"><br><br>
+
+            <label for="cSexo">Sexo:</label>
+            <select id="cSexo" name="cSexo" required>
+                <option value="M">Macho</option>
+                <option value="H">Hembra</option>
+            </select><br><br>
+
+            <label for="cidTipoAnimal">Tipo de Animal:</label>
+            <select id="cidTipoAnimal" name="cidTipoAnimal" required>
+                <option value="PE">Perro</option>
+                <option value="GA">Gato</option>
+                <option value="CO">Conejo</option>
+            </select><br><br>
+
+            <label for="cImagen">URL de Imagen:</label>
+            <input type="text" id="cImagen" name="cImagen"><br><br>
+
+            <input type="submit" value="Agregar Animal">
         </form>
-        
-</section>
-        <!-- Pie de pagina(footer) -->
+    </section>
+
+    <!-- Pie de página (footer) -->
     {% include 'defaults/footer.html' %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-</body>       
+</body>
+
 </html>

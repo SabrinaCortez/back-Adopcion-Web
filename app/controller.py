@@ -189,3 +189,19 @@ def adoptante_negar (cDNI, idAnimales ):
     conexion.close()
     return result
 
+# Función para agregar un nuevo animal
+def agregar_animal(cNombre, cRaza, cEdad, cCondicionEspecial, cSexo, cidTipoAnimal, cImagen):
+    conexion = conexionMySQL()
+    with conexion.cursor() as cursor:
+        cursor.execute('INSERT INTO animales (cNombre, cRaza, cEdad, cCondicionEspecial, cSexo, cidTipoAnimal, cImagen) VALUES (%s, %s, %s, %s, %s, %s, %s)', 
+                       (cNombre, cRaza, cEdad, cCondicionEspecial, cSexo, cidTipoAnimal, cImagen))
+    conexion.commit()
+    conexion.close()
+
+# Función para eliminar un animal
+def eliminar_animal(idAnimales):
+    conexion = conexionMySQL()
+    with conexion.cursor() as cursor:
+        cursor.execute('DELETE FROM animales WHERE idAnimales = %s', (idAnimales,))
+    conexion.commit()
+    conexion.close()

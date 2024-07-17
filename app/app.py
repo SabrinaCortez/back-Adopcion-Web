@@ -81,10 +81,13 @@ def dataTransito():
 @app.route('/listadoadoptantes', methods=['GET', 'POST'])
 def listadoadoptantes():
     title = "Listado Adoptantes"
+    
     if 'loggedin' in session:
         logeado = session['loggedin']
+        
         if logeado:
             if request.method == 'POST':
+                # Procesar el formulario para agregar un animal
                 cNombre = request.form['cNombre']
                 cRaza = request.form['cRaza']
                 cEdad = request.form['cEdad']
@@ -93,6 +96,7 @@ def listadoadoptantes():
                 cidTipoAnimal = request.form['cidTipoAnimal']
                 cImagen = request.form['cImagen']
                 
+                # Insertar el nuevo animal en la base de datos
                 cursor = mysql.connection.cursor()
                 cursor.execute('INSERT INTO animales (cNombre, cRaza, cEdad, cCondicionEspecial, cSexo, cidTipoAnimal, cImagen) VALUES (%s, %s, %s, %s, %s, %s, %s)', 
                                (cNombre, cRaza, cEdad, cCondicionEspecial, cSexo, cidTipoAnimal, cImagen))
@@ -100,10 +104,18 @@ def listadoadoptantes():
                 cursor.close()
                 flash('Animal agregado exitosamente!', 'success')
 
-            adoptantes = adoptante_solicitudes()
+            # Obtener la lista de todos los animales
+            cursor = mysql.connection.cursor()
+            cursor.execute('SELECT idAnimales, cNombre, cRaza, cEdad, cCondicionEspecial, cSexo, cidTipoAnimal, cImagen FROM animales')
+            animales = cursor.fetchall()
+            cursor.close()
+
             tipoAnimales = obtener_TipoAnimales()  # Función que obtenga los tipos de animales
-            return render_template("listadoAdoptantes.html", title=title, adoptantes=adoptantes, tipoAnimales=tipoAnimales)
+
+            return render_template("listadoAdoptantes.html", title=title, animales=animales, tipoAnimales=tipoAnimales)
+        
         return redirect(url_for('login'))
+    
     return redirect(url_for('login'))
 
 @app.route('/adoptante_Confirmar/<string:cDNI>/<int:idAnimales>')
@@ -189,3 +201,36 @@ def registrarse():
         flash('Te has registrado exitosamente!', 'success')
         return redirect(url_for('login'))
     return render_template('registrarse.html')
+
+
+
+@app.route('/agregar_animal', methods=['GET', 'POST'])
+def agregar_animal():
+    if request.method == 'POST':
+        cNombre = request.form['cNombre']
+        cRaza = request.form['cRaza']
+        cEdad = request.form['cEdad']
+        cCondicionEspecial = request.form['cCondicionEspecial']
+        cSexo = request.form['cSexo']
+        cidTipoAnimal = request.form['cidTipoAnimal']
+        cImagen = request.form['cImagen']
+        
+        cursor = mysql.connection.cursor()
+        cursor.execute('INSERT INTO animales (cNombre, cRaza, cEdad, cCondicionEspecial, cSexo, cidTipoAnimal, cImagen) VALUES (%s, %s, %s, %s, %s, %s, %s)', 
+                       (cNombre, cRaza, cEdad, cCondicionEspecial, cSexo, cidTipoAnimal, cImagen))
+        mysql.connection.commit()
+        cursor.close()
+        flash('¡Animal agregado exitosamente!', 'success')
+        return redirect(url_for('listadoadoptantes'))
+    
+    tipoAnimales = obtener_TipoAnimales()  # Asegúrate de definir esta función en controller.py
+    return render_template('agregarAnimal.html', tipoAnimales=tipoAnimales)
+
+@app.route('/eliminar_animal/<int:idAnimales>')
+def eliminar_animal(idAnimales):
+    cursor = mysql.connection.cursor()
+    cursor.execute('DELETE FROM animales WHERE idAnimales = %s', (idAnimales,))
+    mysql.connection.commit()
+    cursor.close()
+    flash('¡Animal eliminado exitosamente!', 'success')
+    return redirect(url_for('listadoadoptantes'))
