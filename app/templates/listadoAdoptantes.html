@@ -70,21 +70,27 @@
                 </tr>
             </thead>
             <tbody>
+
                 {% for animal in animales %}
+              
                 <tr>
-                    <td>{{ animal.idAnimales }}</td>
-                    <td>{{ animal.cNombre }}</td>
-                    <td>{{ animal.cRaza }}</td>
-                    <td>{{ animal.cEdad }}</td>
-                    <td>{{ animal.cCondicionEspecial }}</td>
-                    <td>{{ 'Macho' if animal.cSexo == 'M' else 'Hembra' }}</td>
-                    <td>{{ animal.cidTipoAnimal }}</td>
-                    <td>{{ animal.cImagen }}</td>
+                    <td>{{   animal[0]}}</td>
+                    <td>{{   animal[1]}}</td>
+                    <td>{{   animal[2]}}</td>
+                    <td>{{   animal[3]}}</td>
+                    <td>{{   animal[4]}}</td>
+                    <td>{{   animal[5]}}</td>
+                    <td>{{   animal[6]}}</td>
+                    <td>{{   animal[7]}}</td>
+                   
+            
+                  
                     <td>
                         <a href="/eliminar_animal/{{ animal.idAnimales }}" onclick="return confirm('¿Estás seguro de que deseas eliminar este animal?');">Eliminar</a>
                     </td>
                 </tr>
                 {% endfor %}
+
             </tbody>
         </table>
 
