@@ -24,8 +24,7 @@
                         <th class="col-dDesde">Desde</th>
                         <th class="col-Confirmar">Confirmar</th>
                         <th class="col-Anular">Anular</th>
-                        <th class="col-Eliminar">Eliminar</th>
-                    </tr>
+                      </tr>
                 </thead>
                 <tbody>
                     {% for persona in adoptantes %}
@@ -37,16 +36,24 @@
                         <td>{{ persona[6] }}</td>
                         <td>{{ persona[7] }}</td>
                         <td>
-                            <a href="adoptante_Confirmar/{{ persona[0] }}/{{ persona[5] }}" class="btn btn-white"><i class="bi bi-pencil-fill"></i></a>
+                            <a href="adoptante_Confirmar/{{ persona[0] }}/{{ persona[5] }}" 
+                              class="btn btn-white" 
+                              onclick="return confirm('¿Estás seguro de que deseas confirmar el pedido?');">
+                              <i class="bi bi-pencil-fill"></i></a>
                         </td>
                         <td>
-                            <a href="/adoptante_Anular/{{ persona[0] }}/{{ persona[5] }}" class="btn btn-white"><i class="bi bi-trash-fill"></i></a>
+                            <a href="/adoptante_Anular/{{ persona[0] }}/{{ persona[5] }}" 
+                               class="btn btn-white"
+                               onclick="return confirm('¿Estás seguro de que deseas anular el pedido?');">
+                               <i class="bi bi-trash-fill"></i></a>
                         </td>
+                         <!--
                         <td>
                             <form action="{{ url_for('eliminar_animal', idAnimales=persona[5]) }}" method="POST" style="display:inline;">
                                 <button type="submit" class="btn btn-danger"><i class="bi bi-trash-fill"></i></button>
                             </form>
                         </td>
+                        -->
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -86,7 +93,7 @@
             
                   
                     <td>
-                        <a href="/eliminar_animal/{{ animal.idAnimales }}" onclick="return confirm('¿Estás seguro de que deseas eliminar este animal?');">Eliminar</a>
+                        <a href="/eliminar_animal/{{  animal[0]}}" onclick="return confirm('¿Estás seguro de que deseas eliminar este animal?');"><i class="bi bi-trash-fill"></i></a>
                     </td>
                 </tr>
                 {% endfor %}
