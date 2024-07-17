@@ -627,8 +627,25 @@ h1 {
   width: 100%;
   height: 100%;
 }
+/* Listado Adopciones */
+.listadoAdop {
+  background: #a1c398;
+  color: #044749;
+  position: relative;
+  width: 100%;
+  padding: 40px 100px;
+  font-size: 20px;
+}
+.listadoAdop h3 {
+  font-size: 28px;
+  align-items: center;
+}
+.listadoAdop h2 {
+  text-align: center;
+  margin-top: 32px;
+}
 
-
+/* Loguearse */
 .loguearse-sesion{
   display: flex;
   justify-content: center;
